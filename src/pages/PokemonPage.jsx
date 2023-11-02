@@ -29,8 +29,8 @@ useEffect(()=>{
                 <>
                 <div className='header-main-pokemon'>
                     <span className='number-pokemon'>#{pokemon.id}</span>
-                    <div className='container-img-pokemon'>
-                        <img
+                    <div className='container-img-pokemon'> 
+                        <img 
                             src={pokemon.sprites.other.dream_world.front_default}
                             alt={`Pokemon ${pokemon?.name}`}
                         />
