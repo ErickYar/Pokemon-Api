@@ -20,10 +20,11 @@ const {valueSearch, onInputChange,onResetForm} = useForm({
     const getAllPokemons = async (limit = 50) => {
     // const baseURL = 'https://pokeapi.co/api/v2/';
 
-        const res = await fetch(`${baseURL}pokemon?limit=${limit}&offset=${offset}`)
+        const res = await fetch(
+            `${baseURL}pokemon?limit=${limit}&offset=${offset}`)
         const data = await res.json();
-
-        const promises = data.results.map(async (pokemon) => {
+console.log(data)
+        const promises = data.results.map(async pokemon => {
             const res = await fetch(pokemon.url)
             const data = await res.json()
             return data
@@ -37,7 +38,8 @@ const {valueSearch, onInputChange,onResetForm} = useForm({
     const getGlobalPokemons = async () => {
         // const baseURL = 'https://pokeapi.co/api/v2/';
 
-        const res = await fetch(`${baseURL}pokemon?limit=100000&offset=0`)
+        const res = await fetch(
+            `${baseURL}pokemon?limit=100000&offset=0`);
         const data = await res.json();
 
         const promises = data.results.map(async (pokemon) => {
@@ -52,8 +54,10 @@ const {valueSearch, onInputChange,onResetForm} = useForm({
     }
 
     const getPokemonByID = async (id) => {
+        // const baseURL = 'https://pokeapi.co/api/v2/';
         const res = await fetch(`${baseURL}pokemon/${id}`)
-
+        const data = await res.json();
+		return data;
     }
     useEffect(() => {
         getAllPokemons()
@@ -69,6 +73,7 @@ const {valueSearch, onInputChange,onResetForm} = useForm({
            onInputChange,
            onResetForm,
            allPokemons,
+           loading,
            globalPokemons,
            getPokemonByID,
         }}>
